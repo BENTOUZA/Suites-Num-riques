@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Autocorrection – Réflexion et réfraction (Bac Pro)</title>
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--ink:#1c2733;--mut:#5a6b7d;--blue:#1F4E79;--line:#d5deea;--yel:#fff6d6;--grn:#e4f3dc;--red:#fdeaea}
+@media(prefers-color-scheme:dark){:root{--bg:#10161d;--card:#18212b;--ink:#e6edf4;--mut:#9fb0c0;--blue:#8fc0ee;--line:#2c3a49;--yel:#3a3416;--grn:#1e3322;--red:#3b2222}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:16px 14px 80px}
+.hero{background:#1F4E79;color:#fff;border-radius:14px;padding:22px 20px;margin-bottom:16px}
+.hero h1{margin:0 0 4px;font-size:1.45rem;line-height:1.25}.hero p{margin:0;opacity:.9}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:16px}
+.box h2{margin:0 0 8px;font-size:1.1rem;color:var(--blue)}
+ol.steps{margin:0;padding-left:20px}ol.steps li{margin:4px 0}
+ul.res{list-style:none;margin:0;padding:0}
+ul.res li{display:flex;gap:10px;padding:8px 0;border-top:1px solid var(--line);scroll-margin-top:12px}
+ul.res li:first-child{border-top:0}
+.code{flex:none;font-weight:700;color:var(--blue);background:var(--bg);border-radius:8px;padding:2px 8px;height:fit-content}
+.w{color:var(--mut);font-size:.9rem}ul.res a{word-break:break-all;font-size:.88rem}
+.ex{margin-bottom:22px}
+.ex header{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;border-bottom:3px solid var(--blue);padding-bottom:6px;margin-bottom:10px}
+.ex h2{margin:0;font-size:1.15rem;color:var(--blue)}.sc{font-size:.95rem;color:var(--mut)}.sc b{color:var(--blue);font-size:1.1rem}
+.q{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
+.q.ok{border-color:#548235}.q.ko{border-color:#c0504d}
+.num{flex:none;width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:700}
+@media(prefers-color-scheme:dark){.num{color:#10161d}}
+.body{flex:1;min-width:0}
+details{border-radius:8px;margin-bottom:6px}
+summary{cursor:pointer;font-weight:600;padding:8px 10px;border-radius:8px;list-style:none}
+summary::-webkit-details-marker{display:none}
+.aide summary{background:var(--yel)}.rep summary{background:var(--grn)}
+details p{margin:8px 10px}
+.ans{font-weight:700}
+.check{display:flex;flex-wrap:wrap;gap:8px 18px;margin:6px 10px}
+.check label{cursor:pointer}
+.faux{background:var(--red);border-radius:8px;padding:8px 10px;margin:6px 0 2px;font-size:.95rem}
+.rev{margin-top:6px}.chip{display:inline-block;background:var(--card);border:1px solid var(--line);color:var(--blue);border-radius:999px;padding:1px 10px;text-decoration:none;font-weight:700;margin-right:4px}
+.bilan .tot{font-size:1.6rem;font-weight:800;color:var(--blue)}
+.lvl{padding:10px 12px;border-radius:8px;margin-top:8px;font-weight:600}
+.l1{background:#e4f3dc;color:#2b4b17}.l2{background:#fff0c2;color:#5b4300}.l3{background:#fbe0e0;color:#7a1c1c}.l0{background:var(--bg);color:var(--mut);font-weight:400}
+table{width:100%;border-collapse:collapse;margin-top:6px}td,th{border-top:1px solid var(--line);padding:6px 4px;text-align:left;font-size:.95rem}
+button.reset{margin-top:12px;background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:8px 14px;cursor:pointer;font:inherit}
+:focus-visible{outline:3px solid #2E75B6;outline-offset:2px}
+</style></head><body><div class="wrap">
+<div class="hero"><h1>Autocorrection : réflexion et réfraction de la lumière</h1><p>Terminale Bac Pro – je corrige mes exercices seul(e), avec des aides et des vidéos</p></div>
+<div class="box"><h2>Comment faire ?</h2><ol class="steps">
+<li>Je fais l'exercice <b>seul(e)</b> sur ma fiche d'exercices, au crayon.</li>
+<li>Si je bloque, j'ouvre le <b>💡 Coup de pouce</b>, puis je réessaie.</li>
+<li>J'ouvre la <b>✅ réponse</b>, je compare et je choisis « juste » ou « faux ».</li>
+<li>Si c'est faux, je lis le conseil, je regarde la vidéo conseillée (<b>▶ lettre</b>) et je refais la question.</li>
+<li>Mon score se calcule tout seul en bas de page.</li></ol></div>
+<div class="box"><h2>Les ressources pour comprendre</h2><ul class="res">
+<li id="res-A"><span class="code">▶ A</span><div><b>Expérience : la bougie devant une vitre (image virtuelle)</b> <i>(vidéo)</i><br>
+<a href="https://youtu.be/N3JKHKWLPVc" target="_blank" rel="noopener">https://youtu.be/N3JKHKWLPVc</a><br><span class="w">À regarder : Où voit-on l'image ? Peut-on la recueillir sur un écran ?</span></div></li>
+<li id="res-B"><span class="code">▶ B</span><div><b>« Les lois de Snell-Descartes » (capsule vidéo)</b> <i>(vidéo)</i><br>
+<a href="https://www.youtube.com/watch?v=wfMHoZrOoFM" target="_blank" rel="noopener">https://www.youtube.com/watch?v=wfMHoZrOoFM</a><br><span class="w">À regarder : Le vocabulaire (normale, i, r…) et les lois de la réflexion et de la réfraction.</span></div></li>
+<li id="res-C"><span class="code">▶ C</span><div><b>Réfraction et dispersion de la lumière (Pass-Education)</b> <i>(vidéos)</i><br>
+<a href="https://www.pass-education.fr/refraction-et-dispersion-de-la-lumiere-2nde-videos-pedagogiques/" target="_blank" rel="noopener">https://www.pass-education.fr/refraction-et-dispersion-de-la-lumiere-2nde-videos-pedagogiques/</a><br><span class="w">À regarder : Vidéo « Comprendre la réfraction de la lumière » : pourquoi le rayon change de direction.</span></div></li>
+<li id="res-D"><span class="code">▶ D</span><div><b>Le bâton brisé : un crayon dans un verre d'eau (Unisciel)</b> <i>(expérience filmée)</i><br>
+<a href="http://phymain.unisciel.fr/un-crayon-dans-un-verre-deau-experience-du-baton-brise/" target="_blank" rel="noopener">http://phymain.unisciel.fr/un-crayon-dans-un-verre-deau-experience-du-baton-brise/</a><br><span class="w">À regarder : Un exemple de la vie courante pour comprendre la réfraction.</span></div></li>
+<li id="res-E"><span class="code">▶ E</span><div><b>La communication par fibre optique (Université de Bordeaux)</b> <i>(vidéo)</i><br>
+<a href="https://www.youtube.com/watch?v=IjUDj7JIQ8Q" target="_blank" rel="noopener">https://www.youtube.com/watch?v=IjUDj7JIQ8Q</a><br><span class="w">À regarder : Comment la lumière est guidée par des réflexions successives.</span></div></li>
+<li id="res-F"><span class="code">▶ F</span><div><b>Animation interactive : la fibre optique (Université de Nantes)</b> <i>(animation)</i><br>
+<a href="https://phyanim.sciences.univ-nantes.fr/optiqueGeo/dioptres/fibre_optique.php" target="_blank" rel="noopener">https://phyanim.sciences.univ-nantes.fr/optiqueGeo/dioptres/fibre_optique.php</a><br><span class="w">À regarder : Change l'angle du rayon et observe quand la réflexion devient totale.</span></div></li>
+<li id="res-G"><span class="code">▶ G</span><div><b>Fiche méthode : calculer la vitesse de la lumière dans un milieu (Kartable)</b> <i>(texte)</i><br>
+<a href="https://kartable.fr/ressources/physique-chimie/methode/calculer-la-vitesse-de-la-lumiere-dans-un-milieu-donne-1/20344" target="_blank" rel="noopener">https://kartable.fr/ressources/physique-chimie/methode/calculer-la-vitesse-de-la-lumiere-dans-un-milieu-donne-1/20344</a><br><span class="w">À regarder : La formule n = c / v pas à pas, avec un exemple.</span></div></li></ul></div>
+
+<section class="ex" data-ex="0" data-n="5">
+  <header><h2>Exercice 1 – QCM</h2><span class="sc">Score : <b class="s">0</b> / 5</span></header>
+  
+  <article class="q" data-id="q0_1">
+    <div class="num">1</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Pense à un chiffre rond à connaître : en 1 seconde, la lumière fait environ 7 fois le tour de la Terre.</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">c) 300 000 km/s</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q0_1" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q0_1" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Tu as peut-être confondu les unités : 300 000 000 m/s = 300 000 km/s. Relis le début du cours (partie 1).<div class="rev">Revoir : <a class="chip" href="#res-B">▶ B</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q0_2">
+    <div class="num">2</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Les angles se mesurent par rapport à la normale. Quelle égalité donne la loi de la réflexion ?</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">a) 25°  (i = r)</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q0_2" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q0_2" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> 65° = 90° − 25° : tu as pris l'angle avec la surface. 50° = i + r : tu as additionné au lieu de comparer.<div class="rev">Revoir : <a class="chip" href="#res-B">▶ B</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q0_3">
+    <div class="num">3</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>n = c / v. Si n est plus grand que 1, que peux-tu dire de v par rapport à c ?</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">c) plus lente que dans le vide  (v = c / 1,33 &lt; c)</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q0_3" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q0_3" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> La lumière va à sa vitesse maximale dans le vide : dans tout autre milieu, n &gt; 1, donc v &lt; c.<div class="rev">Revoir : <a class="chip" href="#res-C">▶ C</a> <a class="chip" href="#res-G">▶ G</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q0_4">
+    <div class="num">4</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Écris la loi de Snell-Descartes avec i₁ = 0°. Que vaut sin 0° ?</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">c) n'est pas dévié  (sin 0° = 0, donc i₂ = 0°)</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q0_4" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q0_4" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Un rayon perpendiculaire à la surface (le long de la normale) traverse sans changer de direction.<div class="rev">Revoir : <a class="chip" href="#res-B">▶ B</a> <a class="chip" href="#res-C">▶ C</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q0_5">
+    <div class="num">5</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Surface lisse comme un miroir, ou surface rugueuse comme un mur : dans quelle(s) direction(s) la lumière repart-elle ?</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">b) diffuse</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q0_5" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q0_5" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> « Spéculaire » = surface lisse (miroir). « Diffuse » = surface rugueuse. Relis la fin de la partie 2 du cours.<div class="rev">Revoir : <a class="chip" href="#res-B">▶ B</a></div></div>
+      </details>
+    </div>
+  </article>
+</section>
+<section class="ex" data-ex="1" data-n="5">
+  <header><h2>Exercice 2 – Vrai ou faux</h2><span class="sc">Score : <b class="s">0</b> / 5</span></header>
+  
+  <article class="q" data-id="q1_a">
+    <div class="num">a</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Peut-on recueillir sur un écran l'image que l'on voit dans un miroir ?</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">FAUX : l'image est virtuelle (elle semble être derrière le miroir).</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q1_a" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q1_a" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Image réelle = on peut la projeter sur un écran. Image virtuelle = on la voit mais on ne peut pas la projeter.<div class="rev">Revoir : <a class="chip" href="#res-A">▶ A</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q1_b">
+    <div class="num">b</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Compare n(air) = 1,00 et n(eau) = 1,33. Si n₂ &gt; n₁, sin i₂ est-il plus petit ou plus grand que sin i₁ ?</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">FAUX : le rayon se rapproche de la normale (i₂ &lt; i₁).</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q1_b" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q1_b" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Retiens : milieu plus « réfringent » (n plus grand) → le rayon se rapproche de la normale.<div class="rev">Revoir : <a class="chip" href="#res-B">▶ B</a> <a class="chip" href="#res-C">▶ C</a> <a class="chip" href="#res-D">▶ D</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q1_c">
+    <div class="num">c</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>n = c / v : regarde les unités de c et de v.</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">VRAI : c et v ont la même unité (km/s), elles se simplifient.</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q1_c" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q1_c" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Un indice n'a pas d'unité : c'est un simple rapport de deux vitesses.<div class="rev">Revoir : <a class="chip" href="#res-G">▶ G</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q1_d">
+    <div class="num">d</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>La réflexion totale exige n₁ &gt; n₂. Compare l'eau (1,33) et l'air (1,00).</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">VRAI : eau → air, si l'angle d'incidence dépasse l'angle limite.</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q1_d" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q1_d" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Pense à la fibre optique : la lumière va d'un milieu d'indice élevé vers un milieu d'indice plus faible.<div class="rev">Revoir : <a class="chip" href="#res-E">▶ E</a> <a class="chip" href="#res-F">▶ F</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q1_e">
+    <div class="num">e</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Fais un petit schéma : à partir de quelle droite mesure-t-on i et r ?</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">FAUX : par rapport à la normale (perpendiculaire à la surface).</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q1_e" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q1_e" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Première chose à faire dans un exercice : tracer la normale.<div class="rev">Revoir : <a class="chip" href="#res-B">▶ B</a></div></div>
+      </details>
+    </div>
+  </article>
+</section>
+<section class="ex" data-ex="2" data-n="4">
+  <header><h2>Exercice 3 – Réflexion sur un miroir plan</h2><span class="sc">Score : <b class="s">0</b> / 4</span></header>
+  
+  <article class="q" data-id="q2_1">
+    <div class="num">1</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Trace le miroir, puis la normale au point d'incidence I. Place le rayon incident à 30° de la surface. Le rayon réfléchi est de l'autre côté de la normale.</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">Rayon incident et rayon réfléchi symétriques par rapport à la normale ; chacun fait 30° avec le miroir et 60° avec la normale.</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q2_1" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q2_1" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Vérifie : les deux rayons sont-ils de part et d'autre de la normale ? Les deux angles avec la normale sont-ils égaux ?<div class="rev">Revoir : <a class="chip" href="#res-B">▶ B</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q2_2">
+    <div class="num">2</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>La normale et la surface forment un angle droit (90°). L'angle d'incidence se mesure depuis la normale.</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">i = 90° − 30° = 60°</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q2_2" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q2_2" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Erreur fréquente : répondre 30° (c'est l'angle avec la surface, pas avec la normale).<div class="rev">Revoir : <a class="chip" href="#res-B">▶ B</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q2_3">
+    <div class="num">3</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Quelle loi relie l'angle d'incidence et l'angle de réflexion ?</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">r = i = 60°</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q2_3" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q2_3" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Loi de la réflexion : i = r. Les deux angles sont toujours égaux.<div class="rev">Revoir : <a class="chip" href="#res-B">▶ B</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q2_4">
+    <div class="num">4</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>L'angle entre les deux rayons comprend à la fois i et r.</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">i + r = 60° + 60° = 120°</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q2_4" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q2_4" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Erreur fréquente : répondre 60°. Relis ton schéma : les deux rayons sont de part et d'autre de la normale.<div class="rev">Revoir : <a class="chip" href="#res-B">▶ B</a></div></div>
+      </details>
+    </div>
+  </article>
+</section>
+<section class="ex" data-ex="3" data-n="4">
+  <header><h2>Exercice 4 – Indice de réfraction et vitesse de la lumière</h2><span class="sc">Score : <b class="s">0</b> / 4</span></header>
+  
+  <article class="q" data-id="q3_1">
+    <div class="num">1</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>De n = c / v, tire v = c / n. Prends c = 300 000 km/s.</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">v = 300 000 / 1,33 ≈ 225 600 km/s</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q3_1" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q3_1" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Astuce de contrôle : v doit être plus petite que c. Si tu trouves plus de 300 000, tu as multiplié au lieu de diviser.<div class="rev">Revoir : <a class="chip" href="#res-G">▶ G</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q3_2">
+    <div class="num">2</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Même formule que la question 1, avec n = 2,42.</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">v = 300 000 / 2,42 ≈ 124 000 km/s</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q3_2" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q3_2" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Même contrôle : v &lt; c. Plus n est grand, plus v est petite.<div class="rev">Revoir : <a class="chip" href="#res-G">▶ G</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q3_3">
+    <div class="num">3</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Cette fois on cherche n : utilise directement n = c / v.</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">n = 300 000 / 200 000 = 1,50</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q3_3" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q3_3" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Si tu trouves 0,67, tu as inversé la division (v / c au lieu de c / v). Un indice est toujours ≥ 1.<div class="rev">Revoir : <a class="chip" href="#res-G">▶ G</a> <a class="chip" href="#res-C">▶ C</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q3_4">
+    <div class="num">4</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Compare les deux vitesses trouvées aux questions 1 et 2.</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">Dans le diamant : son indice est plus grand, donc la lumière y est plus lente.</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q3_4" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q3_4" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Plus n est grand, plus la lumière est ralentie.<div class="rev">Revoir : <a class="chip" href="#res-C">▶ C</a> <a class="chip" href="#res-G">▶ G</a></div></div>
+      </details>
+    </div>
+  </article>
+</section>
+<section class="ex" data-ex="4" data-n="4">
+  <header><h2>Exercice 5 – Réfraction (loi de Snell-Descartes)</h2><span class="sc">Score : <b class="s">0</b> / 4</span></header>
+  
+  <article class="q" data-id="q4_1">
+    <div class="num">1</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Écris n₁ × sin i₁ = n₂ × sin i₂. Isole sin i₂, calcule, puis utilise la touche sin⁻¹. Calculatrice en mode degrés (DEG) !</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">sin i₂ = (1,00 × sin 50°) / 1,50 ≈ 0,511, donc i₂ ≈ 31°</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q4_1" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q4_1" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Résultat bizarre ? Vérifie le mode DEG/RAD. Pense aussi à diviser par n₂, et à donner l'angle (pas son sinus).<div class="rev">Revoir : <a class="chip" href="#res-B">▶ B</a> <a class="chip" href="#res-C">▶ C</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q4_2">
+    <div class="num">2</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Compare i₂ et i₁.</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">Il se rapproche de la normale : i₂ (31°) &lt; i₁ (50°).</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q4_2" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q4_2" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> On passe de l'air (n = 1,00) au verre (n = 1,50) : milieu plus réfringent → on se rapproche de la normale.<div class="rev">Revoir : <a class="chip" href="#res-B">▶ B</a> <a class="chip" href="#res-C">▶ C</a> <a class="chip" href="#res-D">▶ D</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q4_3">
+    <div class="num">3</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Ici n₁ est l'indice de l'eau (1,33) et n₂ celui de l'air (1,00). Fais attention à l'ordre !</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">sin i₂ = (1,33 × sin 30°) / 1,00 = 0,665, donc i₂ ≈ 42°</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q4_3" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q4_3" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> n₁ est toujours le milieu d'où vient le rayon. Si tu as inversé n₁ et n₂, tu trouves 22° au lieu de 42°.<div class="rev">Revoir : <a class="chip" href="#res-B">▶ B</a> <a class="chip" href="#res-C">▶ C</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q4_4">
+    <div class="num">4</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Compare i₂ et i₁.</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">Il s'écarte de la normale : i₂ (42°) &gt; i₁ (30°).</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q4_4" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q4_4" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> On passe d'un milieu plus réfringent (eau) à un milieu moins réfringent (air) : le rayon s'écarte de la normale.<div class="rev">Revoir : <a class="chip" href="#res-B">▶ B</a> <a class="chip" href="#res-D">▶ D</a> <a class="chip" href="#res-F">▶ F</a></div></div>
+      </details>
+    </div>
+  </article>
+</section>
+<section class="ex" data-ex="5" data-n="4">
+  <header><h2>Exercice 6 – Réflexion totale et fibre optique</h2><span class="sc">Score : <b class="s">0</b> / 4</span></header>
+  
+  <article class="q" data-id="q5_1">
+    <div class="num">1</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>De quel milieu vers quel milieu va la lumière ? Compare n₁ et n₂.</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">Quand la lumière passe d'un milieu plus réfringent vers un milieu moins réfringent (n₁ &gt; n₂), avec un angle d'incidence supérieur à l'angle limite.</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q5_1" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q5_1" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Les deux conditions sont nécessaires : (1) n₁ &gt; n₂ et (2) i supérieur à l'angle limite.<div class="rev">Revoir : <a class="chip" href="#res-E">▶ E</a> <a class="chip" href="#res-F">▶ F</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q5_2">
+    <div class="num">2</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>À la limite, le rayon réfracté « rase » la surface : i₂ = 90°, donc sin i₂ = 1. Écris n₁ × sin ℓ = n₂ × 1.</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">sin ℓ = n₂ / n₁ = 1 / 1,33 ≈ 0,752, donc ℓ ≈ 49°</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q5_2" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q5_2" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Contrôle : un sinus ne peut jamais dépasser 1. Si tu trouves plus de 1, tu as inversé n₁ et n₂.<div class="rev">Revoir : <a class="chip" href="#res-F">▶ F</a> <a class="chip" href="#res-B">▶ B</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q5_3">
+    <div class="num">3</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Compare chaque angle d'incidence à l'angle limite trouvé (49°).</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">55° &gt; 49° : réflexion totale (rien ne sort). 30° &lt; 49° : le rayon est réfracté et sort dans l'air.</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q5_3" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q5_3" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Plus grand que l'angle limite → réflexion totale. Plus petit → réfraction possible.<div class="rev">Revoir : <a class="chip" href="#res-E">▶ E</a> <a class="chip" href="#res-F">▶ F</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q5_4">
+    <div class="num">4</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Même formule que la question 2 avec n₁ = 1,48 (cœur) et n₂ = 1,46 (gaine).</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">sin ℓ = 1,46 / 1,48 ≈ 0,986, donc ℓ ≈ 81°</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q5_4" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q5_4" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Si tu trouves un sinus supérieur à 1 : tu as divisé 1,48 par 1,46, il faut l'inverse (n₂ / n₁).<div class="rev">Revoir : <a class="chip" href="#res-E">▶ E</a> <a class="chip" href="#res-F">▶ F</a></div></div>
+      </details>
+    </div>
+  </article>
+</section>
+<section class="ex" data-ex="6" data-n="4">
+  <header><h2>Exercice 7 – En institut de beauté</h2><span class="sc">Score : <b class="s">0</b> / 4</span></header>
+  
+  <article class="q" data-id="q6_1">
+    <div class="num">1</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Dans un miroir plan, l'image est symétrique de l'objet : aussi loin derrière le miroir que l'objet est devant.</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">1,20 m derrière le miroir, donc 1,20 + 1,20 = 2,40 m de la cliente.</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q6_1" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q6_1" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Erreur fréquente : répondre 1,20 m pour la distance cliente–image. Il faut doubler, car l'image est de l'autre côté du miroir.<div class="rev">Revoir : <a class="chip" href="#res-A">▶ A</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q6_2">
+    <div class="num">2</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Calcule la nouvelle distance cliente–miroir, puis double-la.</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">1,20 + 0,30 = 1,50 m du miroir ; 2 × 1,50 = 3,00 m de son image.</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q6_2" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q6_2" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Erreur fréquente : 2,40 + 0,30 = 2,70 m. L'image recule aussi de 0,30 m, donc la distance totale augmente de 0,60 m.<div class="rev">Revoir : <a class="chip" href="#res-A">▶ A</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q6_3">
+    <div class="num">3</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Peut-on recueillir cette image sur un écran ?</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">Virtuelle : elle semble située derrière le miroir et ne peut pas être projetée sur un écran.</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q6_3" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q6_3" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Relis la définition d'image virtuelle dans la partie 2 du cours.<div class="rev">Revoir : <a class="chip" href="#res-A">▶ A</a></div></div>
+      </details>
+    </div>
+  </article>
+  <article class="q" data-id="q6_4">
+    <div class="num">4</div>
+    <div class="body">
+      <details class="aide"><summary>💡 Coup de pouce</summary><p>Surface lisse → quel type de réflexion ? Surface rugueuse → quel type ?</p></details>
+      <details class="rep"><summary>✅ Voir la réponse</summary><p class="ans">Vernis gloss : surface lisse → réflexion spéculaire (reflets, aspect brillant). Peau matifiée : surface rugueuse → réflexion diffuse (pas de reflet, aspect mat).</p>
+        <div class="check" role="group" aria-label="Mon résultat">
+          <label><input type="radio" name="q6_4" value="ok"> ☺ J'avais juste</label>
+          <label><input type="radio" name="q6_4" value="ko"> ✘ Je m'étais trompé(e)</label>
+        </div>
+        <div class="faux"><b>Si c'est faux…</b> Spéculaire = une direction privilégiée (miroir, vernis). Diffuse = toutes les directions (mur, peau mate).<div class="rev">Revoir : <a class="chip" href="#res-A">▶ A</a> <a class="chip" href="#res-B">▶ B</a></div></div>
+      </details>
+    </div>
+  </article>
+</section>
+<div class="box bilan" id="bilan"><h2>Mon bilan</h2>
+<div><span class="tot"><span id="tot">0</span> / 30</span> <span style="color:var(--mut)">réponses justes (<span id="done">0</span> questions corrigées)</span></div>
+<table><tbody><tr><td>Exercice 1 – QCM</td><td><b id="b0">0</b> / 5</td></tr><tr><td>Exercice 2 – Vrai ou faux</td><td><b id="b1">0</b> / 5</td></tr><tr><td>Exercice 3 – Réflexion sur un miroir plan</td><td><b id="b2">0</b> / 4</td></tr><tr><td>Exercice 4 – Indice de réfraction et vitesse de la lumière</td><td><b id="b3">0</b> / 4</td></tr><tr><td>Exercice 5 – Réfraction (loi de Snell-Descartes)</td><td><b id="b4">0</b> / 4</td></tr><tr><td>Exercice 6 – Réflexion totale et fibre optique</td><td><b id="b5">0</b> / 4</td></tr><tr><td>Exercice 7 – En institut de beauté</td><td><b id="b6">0</b> / 4</td></tr></tbody></table>
+<div id="lvl" class="lvl l0">Corrige tes questions pour voir ton niveau.</div>
+<button class="reset" id="reset" type="button">Tout remettre à zéro</button></div>
+</div>
+<script>
+(function(){
+var N=30;var KEY='autocorr-reflexion';
+var st={};try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+function upd(){
+  var tot=0,done=0;
+  document.querySelectorAll('.ex').forEach(function(ex,i){
+    var s=0;ex.querySelectorAll('.q').forEach(function(q){var v=st[q.dataset.id];q.classList.toggle('ok',v==='ok');q.classList.toggle('ko',v==='ko');if(v)done++;if(v==='ok')s++;});
+    ex.querySelector('.s').textContent=s;document.getElementById('b'+i).textContent=s;tot+=s;});
+  document.getElementById('tot').textContent=tot;document.getElementById('done').textContent=done;
+  var l=document.getElementById('lvl');
+  if(done<N){l.className='lvl l0';l.textContent='Corrige tes '+N+' questions pour voir ton niveau ('+done+' / '+N+' faites).';}
+  else if(tot>=27){l.className='lvl l1';l.textContent='Très bien : tu maîtrises le chapitre. Tu peux aider un camarade !';}
+  else if(tot>=20){l.className='lvl l2';l.textContent='Bien : refais les questions fausses après avoir regardé les vidéos indiquées.';}
+  else{l.className='lvl l3';l.textContent='À consolider : relis ta fiche de cours, regarde les vidéos ▶ B et ▶ C, puis refais les exercices.';}
+}
+document.querySelectorAll('.q').forEach(function(q){
+  var id=q.dataset.id;
+  q.querySelectorAll('input[type=radio]').forEach(function(r){
+    if(st[id]===r.value)r.checked=true;
+    r.addEventListener('change',function(){st[id]=r.value;save();upd();});
+  });
+});
+document.getElementById('reset').addEventListener('click',function(){
+  st={};save();document.querySelectorAll('input[type=radio]').forEach(function(r){r.checked=false});
+  document.querySelectorAll('details').forEach(function(d){d.open=false});upd();});
+upd();
+})();
+</script></body></html>
